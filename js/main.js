@@ -327,7 +327,7 @@ const meals = [
   { day: 26, meals: [{type:"Завтрак",name:"Яйца с беконом",desc:"Яйца с беконом"},{type:"Обед",name:"Говядина с овощами",desc:"Говядина с овощами"},{type:"Ужин",name:"Ореховая смесь",desc:"Ореховая смесь"}] },
   { day: 27, meals: [{type:"Завтрак",name:"Смузи с кокосом и чиа",desc:"Смузи с кокосом и чиа"},{type:"Обед",name:"Рыба с салатом",desc:"Рыба с салатом"},{type:"Ужин",name:"Сырники без сахара",desc:"Сырники без сахара"}] },
   { day: 28, meals: [{type:"Завтрак",name:"Фриттата с грибами",desc:"Фриттата с грибами"},{type:"Обед",name:"Суп из брокколи",desc:"Суп из брокколи"},{type:"Ужин",name:"Кефир с орехами",desc:"Кефир + орехи"}] },
-  { day: 29, meals: [{type:"Завтрак",name:"Авокадо с яйцом",desc:"Авокадо с яйцом"},{type:"Обед",name:"Курица с авокадо",desc:"Курица с авокадо"},{type:"Ужин",name:"Тёмный шоколад с миндалём",desc:"Тёмный шоколад + миндаль"}] },
+  { day: 29, meals: [{type:"Завтрак",name:"Авокادо с яйцом",desc:"Авокадо с яйцом"},{type:"Обед",name:"Курица с авокадо",desc:"Курица с авокадо"},{type:"Ужин",name:"Тёмный шоколад с миндалём",desc:"Тёмный шоколад + миндаль"}] },
   { day: 30, meals: [{type:"Завтрак",name:"Любимый кето-завтрак!",desc:"Любимый кето-завтрак!"},{type:"Обед",name:"Любимое кето-блюдо!",desc:"Любимое кето-блюдо!"},{type:"Ужин",name:"Празднуем результат!",desc:"Празднуем результат!"}] }
 ];
 
@@ -1185,9 +1185,8 @@ function renderDay(dayNum) {
     return;
   }
 
-  // Обновляем заголовок дня
   document.getElementById('dayCounter').textContent = `День ${dayNum}`;
-
+  
   // Обновляем кнопку "Выполнено"
   const markBtn = document.getElementById('markDoneBtn');
   if (completedDays[dayNum]) {
@@ -1254,33 +1253,33 @@ function renderDay(dayNum) {
 document.addEventListener('DOMContentLoaded', () => {
   renderDay(currentDay);
 
+  // Навигация
   document.getElementById('prevBtn').addEventListener('click', () => {
-  if (currentDay > 1) {
-    currentDay--;
-    localStorage.setItem('currentDay', currentDay);
-    renderDay(currentDay);
-  }
-});
+    if (currentDay > 1) {
+      currentDay--;
+      localStorage.setItem('currentDay', currentDay);
+      renderDay(currentDay);
+    }
+  });
 
-document.getElementById('nextBtn').addEventListener('click', () => {
-  if (currentDay < 30) {
-    currentDay++;
-    localStorage.setItem('currentDay', currentDay);
-    renderDay(currentDay);
-  }
-});
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (currentDay < 30) {
+      currentDay++;
+      localStorage.setItem('currentDay', currentDay);
+      renderDay(currentDay);
+    }
+  });
 
+  // Переключатель "Выполнено"
   document.getElementById('markDoneBtn').addEventListener('click', () => {
-  if (completedDays[currentDay]) {
-    // Отменяем выполнение
-    delete completedDays[currentDay];
-  } else {
-    // Отмечаем как выполненное
-    completedDays[currentDay] = true;
-  }
-  localStorage.setItem('completedDays', JSON.stringify(completedDays));
-  renderDay(currentDay);
-});
+    if (completedDays[currentDay]) {
+      delete completedDays[currentDay]; // Удаляем запись
+    } else {
+      completedDays[currentDay] = true; // Добавляем запись
+    }
+    localStorage.setItem('completedDays', JSON.stringify(completedDays));
+    renderDay(currentDay);
+  });
 
   // Модалки — упражнения
   document.addEventListener('click', (e) => {
