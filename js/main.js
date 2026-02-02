@@ -1185,8 +1185,18 @@ function renderDay(dayNum) {
     return;
   }
 
+  // Обновляем заголовок дня
   document.getElementById('dayCounter').textContent = `День ${dayNum}`;
-  document.getElementById('markDoneBtn').textContent = completedDays[dayNum] ? '✅ Выполнено!' : '✅ Выполнено';
+
+  // Обновляем кнопку "Выполнено"
+  const markBtn = document.getElementById('markDoneBtn');
+  if (completedDays[dayNum]) {
+    markBtn.textContent = '✅ Выполнено!';
+    markBtn.style.opacity = '0.8';
+  } else {
+    markBtn.textContent = '✅ Выполнено';
+    markBtn.style.opacity = '1';
+  }
 
   // Упражнения
   let exercisesHtml = '<ul id="exercises-list">';
