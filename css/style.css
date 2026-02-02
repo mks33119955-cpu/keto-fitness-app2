@@ -199,3 +199,15 @@ footer {
   button { width: 100%; }
   .how-content, .recipe-content { padding: 16px; }
 }
+
+#resetBtn {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: #f00;
+  color: #f00;
+  text-shadow: 0 0 8px #f00;
+}
+
+#resetBtn:hover {
+  background: rgba(255, 0, 0, 0.4);
+  box-shadow: 0 0 12px #f00;
+}
