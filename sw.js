@@ -1,12 +1,38 @@
-const CACHE_NAME = 'ketofit-v1';
-const urlsToCache = ['/', '/css/style.css', '/js/main.js'];
+// sw.js — автоматически обновляется при каждом деплое
+const CACHE_NAME = 'ketofit-cache-v' + Date.now(); // ← уникальное имя кэша каждый раз
+
+const urlsToCache = [
+  '/',
+  '/css/style.css',
+  '/js/main.js',
+  '/manifest.json'
+];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(urlsToCache))
+  );
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
+    caches.match(event.request)
+      .then((response) => response || fetch(event.request))
+  );
+});
+
+// Очистка старых кэшей
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });
