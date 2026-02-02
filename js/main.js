@@ -1255,26 +1255,32 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDay(currentDay);
 
   document.getElementById('prevBtn').addEventListener('click', () => {
-    if (currentDay > 1) {
-      currentDay--;
-      localStorage.setItem('currentDay', currentDay);
-      renderDay(currentDay);
-    }
-  });
+  if (currentDay > 1) {
+    currentDay--;
+    localStorage.setItem('currentDay', currentDay);
+    renderDay(currentDay);
+  }
+});
 
-  document.getElementById('nextBtn').addEventListener('click', () => {
-    if (currentDay < 30) {
-      currentDay++;
-      localStorage.setItem('currentDay', currentDay);
-      renderDay(currentDay);
-    }
-  });
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (currentDay < 30) {
+    currentDay++;
+    localStorage.setItem('currentDay', currentDay);
+    renderDay(currentDay);
+  }
+});
 
   document.getElementById('markDoneBtn').addEventListener('click', () => {
+  if (completedDays[currentDay]) {
+    // Отменяем выполнение
+    delete completedDays[currentDay];
+  } else {
+    // Отмечаем как выполненное
     completedDays[currentDay] = true;
-    localStorage.setItem('completedDays', JSON.stringify(completedDays));
-    renderDay(currentDay);
-  });
+  }
+  localStorage.setItem('completedDays', JSON.stringify(completedDays));
+  renderDay(currentDay);
+});
 
   // Модалки — упражнения
   document.addEventListener('click', (e) => {
