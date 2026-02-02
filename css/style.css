@@ -1,0 +1,201 @@
+:root {
+  --neon-pink: #ff00ff;
+  --neon-cyan: #00ffff;
+  --bg: #000;
+  --text: #fff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  line-height: 1.6;
+  padding: 16px;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 16px 0;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.4rem;
+  color: var(--neon-pink);
+  text-shadow: 0 0 12px var(--neon-pink);
+  margin-bottom: 8px;
+}
+
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 4px;
+  margin: 10px 0 20px;
+  overflow: hidden;
+}
+
+#progressBar {
+  height: 100%;
+  background: var(--neon-cyan);
+  width: 0%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+#dayCounter {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+button {
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-shadow: none;
+  white-space: nowrap;
+}
+
+button:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 12px var(--neon-cyan);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#markDoneBtn {
+  background: rgba(0, 255, 0, 0.2);
+  border-color: #0f0;
+  color: #0f0;
+  text-shadow: 0 0 8px #0f0;
+}
+
+#markDoneBtn:hover {
+  background: rgba(0, 255, 0, 0.4);
+  box-shadow: 0 0 12px #0f0;
+}
+
+.day-card, .meal-plan {
+  border: 2px solid var(--neon-cyan);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 24px 0;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+h2, h3, h4 {
+  margin-bottom: 12px;
+  color: var(--neon-pink);
+  text-shadow: 0 0 10px var(--neon-pink);
+}
+
+ul { margin: 12px 0; padding-left: 20px; }
+li { margin: 12px 0; position: relative; }
+
+.how-btn, .recipe-btn {
+  margin-left: 12px;
+  background: rgba(0, 255, 255, 0.2);
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.recipe-btn:hover, .how-btn:hover {
+  background: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 8px var(--neon-cyan);
+}
+
+.how-modal, .recipe-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.how-content, .recipe-content {
+  background: #0a0a0a;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 0 20px var(--neon-cyan);
+  font-size: 1rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: 1px solid var(--neon-pink);
+  color: var(--neon-pink);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.close-btn:hover {
+  background: rgba(255, 0, 255, 0.2);
+}
+
+.meal { margin: 12px 0; }
+.meal p { margin-top: 6px; }
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.8rem; }
+  .controls { flex-direction: column; gap: 10px; }
+  button { width: 100%; }
+  .how-content, .recipe-content { padding: 16px; }
+}
